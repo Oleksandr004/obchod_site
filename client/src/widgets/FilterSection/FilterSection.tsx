@@ -23,7 +23,7 @@ const FilterSection = ({ onFilterChange }: Props) => {
 		const fetchCategories = async () => {
 			try {
 				const res = await axios.get<string[]>(
-					'http://localhost:5000/api/products/categories/list'
+					`${import.meta.env.VITE_API_BASE_URL}/api/products/categories/list`
 				)
 				setCategories(res.data.filter((c) => c.trim() !== ''))
 			} catch (err) {

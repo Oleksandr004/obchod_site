@@ -40,9 +40,13 @@ const CatalogSection = ({ filters }: Props) => {
 					params.minPrice = filters.priceRange[0]
 					params.maxPrice = filters.priceRange[1]
 				}
-				const response = await axios.get('http://localhost:5000/api/products', {
-					params,
-				})
+				const response = await axios.get(
+					`${import.meta.env.VITE_API_BASE_URL}/api/products`,
+					{
+						params,
+					}
+				)
+
 				setProducts(response.data)
 				setCurrentPage(1)
 			} catch (err) {
@@ -105,6 +109,7 @@ const CatalogSection = ({ filters }: Props) => {
 				) : (
 					currentProducts.map((product) => (
 						<ProductCard
+							key={product.id}
 							id={product.id}
 							name={product.name}
 							image={product.image}

@@ -19,7 +19,7 @@ const HeroKategorieSection = () => {
 		const fetchProducts = async () => {
 			try {
 				const response = await axios.get<Product[]>(
-					'http://localhost:5000/api/products'
+					`${import.meta.env.VITE_API_BASE_URL}/api/products/`
 				)
 				const shuffled = [...response.data].sort(() => 0.5 - Math.random())
 				const selected = shuffled.slice(0, 15)

@@ -1,14 +1,21 @@
 import styles from './SimilarProdutCard.module.scss'
 import productPhoto from '../../assets/similarPhoto.png'
 import starsImg from '../../assets/stars.png'
+import { Link } from 'react-router-dom'
 
-const SimilarProdutCard = () => {
+type Props = {
+	name: string
+	image: string
+	id: string
+}
+
+const SimilarProdutCard = ({ image, name, id }: Props) => {
+	const imgUrl = image.length > 0 ? image : productPhoto
+
 	return (
 		<div className={styles.container}>
-			<img src={productPhoto} alt='photo similar product' />
-			<p className={styles.name}>
-				Lorem Ipsum is simply <br /> dummy text
-			</p>
+			<img className={styles.image} src={imgUrl} alt='photo similar product' />
+			<p className={styles.name}>{name}</p>
 			<div
 				style={{
 					display: 'flex',
@@ -21,7 +28,9 @@ const SimilarProdutCard = () => {
 					<img src={starsImg} alt='' />
 				</div>
 			</div>
-			<button className={styles.btn}>Zobrazit produkt</button>
+			<Link to={`/${id}`} className={styles.btn}>
+				Zobrazit produkt
+			</Link>
 		</div>
 	)
 }
